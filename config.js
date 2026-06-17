@@ -23,6 +23,15 @@ const dbAuth = () => {
 
     return '';
 };
+
+const buildConnectionString = () => {
+    if (DB_CLUSTER) {
+        return `mongodb+srv://${dbAuth()}${DB_CLUSTER}.slofrci.mongodb.net/${DB_NAME}`;
+    }
+
+    return `mongodb://${dbAuth()}${DB_HOST}:${parseInt(DB_PORT) || 27017}/${DB_NAME}`;
+};
+
 module.exports = {
     port: PORT || 30000,
     database: {
@@ -32,7 +41,7 @@ module.exports = {
         username: DB_USER,
         password: DB_PASSWORD,
         basicAuth: DB_BASIC_AUTH,
-        connectionString: `mongodb://${dbAuth()}${DB_HOST}:${DB_PORT}/${DB_NAME}` || `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_CLUSTER}.slofrci.mongodb.net/`,
+        connectionString: buildConnectionString(),
     },
     encryption: {
         saltRounds: 10,
