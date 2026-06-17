@@ -11,6 +11,7 @@ const {
     DB_BASIC_AUTH,
     DB_USER,
     DB_PASSWORD,
+    DB_CLUSTER,
     JWT_TOKEN,
     NODE_ENV,
 } = process.env;
@@ -31,7 +32,7 @@ module.exports = {
         username: DB_USER,
         password: DB_PASSWORD,
         basicAuth: DB_BASIC_AUTH,
-        connectionString: `mongodb://${dbAuth()}${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+        connectionString: `mongodb://${dbAuth()}${DB_HOST}:${DB_PORT}/${DB_NAME}` || `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_CLUSTER}.slofrci.mongodb.net/`,
     },
     encryption: {
         saltRounds: 10,
