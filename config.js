@@ -26,7 +26,7 @@ const dbAuth = () => {
 
 const buildConnectionString = () => {
     if (DB_CLUSTER) {
-        return `mongodb+srv://${dbAuth()}${DB_CLUSTER}.slofrci.mongodb.net/${DB_NAME}`;
+        return `mongodb+srv://${dbAuth()}${DB_CLUSTER}.gfezsuh.mongodb.net/${DB_NAME}`;
     }
 
     return `mongodb://${dbAuth()}${DB_HOST}:${parseInt(DB_PORT) || 27017}/${DB_NAME}`;
